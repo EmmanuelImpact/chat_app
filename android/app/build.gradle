@@ -23,14 +23,13 @@ if (flutterVersionName == null) {
 
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-<<<<<<< HEAD
-<<<<<<< HEAD
+
+
 apply plugin: 'com.google.gms.google-services'
-=======
->>>>>>> a6c2005aa6b12369a2d99b91209b21366271e27e
-=======
+
+
 apply plugin: 'com.google.gms.google-services'
->>>>>>> 4aaf8e9b1caad8cfdee56fd1d1aa0ed626199bb1
+
 
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
@@ -83,12 +82,9 @@ dependencies {
     implementation platform('com.google.firebase:firebase-bom:30.2.0')
     implementation 'com.google.firebase:firebase-analytics'
     implementation 'com.android.support:multidex:1.0.3'
-<<<<<<< HEAD
-<<<<<<< HEAD
+
     implementation platform('com.google.firebase:firebase-bom:30.3.1')
-=======
->>>>>>> a6c2005aa6b12369a2d99b91209b21366271e27e
-=======
+
     implementation platform('com.google.firebase:firebase-bom:30.3.1')
->>>>>>> 4aaf8e9b1caad8cfdee56fd1d1aa0ed626199bb1
+
 }
