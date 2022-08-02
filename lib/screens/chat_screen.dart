@@ -1,3 +1,5 @@
+import '../chats/new_message.dart';
+
 import '../chats/messages.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -53,18 +55,9 @@ class ChatsScreen extends StatelessWidget {
             Expanded(
               child: Messages(),
             ),
+            NewMessage(),
           ],
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.add),
-        onPressed: () {
-          FirebaseFirestore.instance
-              .collection('chats/2b6EW2uEmah0L00mgRDj/messages')
-              .add({
-            'text': 'We do beilieve it\'d turn out well.',
-          });
-        },
       ),
     );
   }
