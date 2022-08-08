@@ -23,8 +23,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.pink,
         backgroundColor: Colors.pink,
-        colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.pink)
-            .copyWith(secondary: Colors.deepPurple),
+        // ignore: deprecated_member_use
+        accentColor: Colors.deepPurple,
         // ignore: deprecated_member_use
         accentColorBrightness: Brightness.dark,
         buttonTheme: ButtonTheme.of(context).copyWith(
