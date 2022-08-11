@@ -1,3 +1,4 @@
+import '../widgets/image_picker_widget.dart';
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
@@ -66,6 +67,7 @@ class _AuthFormState extends State<AuthForm> {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
+                    const ImagePickerWidget(),
                     TextFormField(
                       key: const ValueKey('email'),
                       validator: (value) {

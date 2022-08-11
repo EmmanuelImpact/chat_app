@@ -5,10 +5,12 @@ class MessageBubble extends StatelessWidget {
   const MessageBubble(
     this.message,
     this.isMe,
+    this.username,
   );
 
   final String message;
   final bool isMe;
+  final String username;
 
   @override
   Widget build(BuildContext context) {
@@ -37,14 +39,25 @@ class MessageBubble extends StatelessWidget {
             horizontal: 8,
           ),
           width: 200,
-          child: Text(
-            message,
-            style: TextStyle(
-              color: isMe
-                  ? Colors.black
-                  // ignore: deprecated_member_use
-                  : Theme.of(context).accentTextTheme.headline1!.color,
-            ),
+          child: Column(
+            crossAxisAlignment:
+                isMe ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+            children: [
+              Text(
+                username,
+                style: const TextStyle(fontWeight: FontWeight.bold),
+              ),
+              Text(
+                message,
+                style: TextStyle(
+                  color: isMe
+                      ? Colors.black
+                      // ignore: deprecated_member_use
+                      : Theme.of(context).accentTextTheme.headline1!.color,
+                ),
+                textAlign: isMe ? TextAlign.end : TextAlign.start,
+              ),
+            ],
           ),
         ),
       ],
