@@ -47,6 +47,12 @@ class _ImagePickerWidgetState extends State<ImagePickerWidget> {
                   pickedImage!,
                 )
               : null,
+          child: pickedImage == null
+              ? const Icon(
+                  Icons.image_outlined,
+                  color: Colors.white,
+                )
+              : null,
         ),
         // ignore: deprecated_member_use
         FlatButton.icon(
