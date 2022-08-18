@@ -37,18 +37,21 @@ dependencies:
   cloud_firestore: ^3.3.0
   firebase_core: ^1.19.2
   firebase_auth: ^3.5.0
-  image_picker: ^0.8.5+3
-  cross_file_image: ^1.0.0
-  camera: ^0.10.0+1
-  path_provider: ^2.0.11
-  path: ^1.8.1
+  image_picker:
+  path_provider: 
+  path:
   cross_file:
+ 
+  
   
   
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
+#dependency_overrides:
+#  image_picker:    
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is

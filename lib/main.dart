@@ -4,7 +4,6 @@ import 'firebase_options.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '../screens/auth_screen.dart';
 import '../screens/chat_screen.dart';
-import 'package:camera/camera.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

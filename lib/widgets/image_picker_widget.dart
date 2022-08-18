@@ -1,10 +1,9 @@
 import 'dart:async';
 import 'dart:io';
-import 'package:flutter/foundation.dart';
+
 import 'package:flutter/material.dart';
-import 'package:cross_file_image/cross_file_image.dart';
+
 import 'package:image_picker/image_picker.dart';
-import 'package:cross_file/cross_file.dart';
 
 class ImagePickerWidget extends StatefulWidget {
   const ImagePickerWidget({
@@ -16,18 +15,24 @@ class ImagePickerWidget extends StatefulWidget {
 }
 
 class _ImagePickerWidgetState extends State<ImagePickerWidget> {
-  File? _pickedImage;
+  File? pickedImage;
 
   Future _pickImage() async {
-    final pick = ImagePicker();
+    final ImagePicker pick = ImagePicker();
+
+    /* await Permission.camera.request();
+    var permissionStatus = await Permission.camera.status; */
+
     final pickedImageFile = await pick.pickImage(
       source: ImageSource.camera,
     );
-    if (pickedImageFile != null) {
-      setState(() {
-        _pickedImage = File(pickedImageFile);
-      });
-    }
+    //final bytes = File(pickedImageFile!.path).readAsBytesSync();
+
+    setState(() {
+      // ignore: unnecessary_null_comparison
+
+      pickedImage = File(pickedImageFile!.path);
+    });
   }
 
   @override
@@ -35,8 +40,13 @@ class _ImagePickerWidgetState extends State<ImagePickerWidget> {
     return Column(
       children: [
         CircleAvatar(
-          radius: 40,
-          backgroundImage: FileImage(_pickedImage!),
+          radius: 50,
+          backgroundColor: Colors.grey,
+          backgroundImage: pickedImage != null
+              ? FileImage(
+                  pickedImage!,
+                )
+              : null,
         ),
         // ignore: deprecated_member_use
         FlatButton.icon(
