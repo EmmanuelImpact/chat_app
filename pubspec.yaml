@@ -41,7 +41,7 @@ dependencies:
   path_provider: 
   path:
   cross_file:
- 
+  firebase_storage: ^10.3.5
   
   
   

@@ -5,10 +5,11 @@ import 'package:flutter/material.dart';
 
 import 'package:image_picker/image_picker.dart';
 
+// ignore: must_be_immutable
 class ImagePickerWidget extends StatefulWidget {
-  const ImagePickerWidget({
-    super.key,
-  });
+  const ImagePickerWidget(this.activeImage, {Key? key}) : super(key: key);
+
+  final void Function(File usedImage) activeImage;
 
   @override
   State<ImagePickerWidget> createState() => _ImagePickerWidgetState();
@@ -25,6 +26,8 @@ class _ImagePickerWidgetState extends State<ImagePickerWidget> {
 
     final pickedImageFile = await pick.pickImage(
       source: ImageSource.camera,
+      imageQuality: 50,
+      maxWidth: 150,
     );
     //final bytes = File(pickedImageFile!.path).readAsBytesSync();
 
@@ -33,6 +36,7 @@ class _ImagePickerWidgetState extends State<ImagePickerWidget> {
 
       pickedImage = File(pickedImageFile!.path);
     });
+    widget.activeImage(pickedImage!);
   }
 
   @override

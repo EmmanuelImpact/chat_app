@@ -1,9 +1,11 @@
 import '../widgets/image_picker_widget.dart';
 import 'package:flutter/material.dart';
+import 'dart:io';
 
 // ignore: must_be_immutable
 class AuthForm extends StatefulWidget {
   final void Function(
+    File image,
     String email,
     String password,
     String userName,
@@ -35,13 +37,35 @@ class _AuthFormState extends State<AuthForm> {
 
   final _formKey = GlobalKey<FormState>();
 
+  // ignore: unused_field
+  File? _takenPicture;
+
+  void _userImage(File image) {
+    _takenPicture = image;
+  }
+
   void _trySubmit() {
     final isValid = _formKey.currentState!.validate();
     FocusScope.of(context).unfocus();
 
+    if (_takenPicture == null && !_isLogin) {
+      // ignore: deprecated_member_use
+      Scaffold.of(context).showSnackBar(
+        SnackBar(
+          content: const Text(
+            'Take a picture!',
+            textAlign: TextAlign.center,
+          ),
+          backgroundColor: Theme.of(context).errorColor,
+        ),
+      );
+      return;
+    }
+
     if (isValid) {
       _formKey.currentState!.save();
       widget.submitFn(
+        _takenPicture!,
         _emailAddress.trim(),
         _password.trim(),
         _userName.trim(),
@@ -67,7 +91,7 @@ class _AuthFormState extends State<AuthForm> {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    if (!_isLogin) const ImagePickerWidget(),
+                    if (!_isLogin) ImagePickerWidget(_userImage),
                     TextFormField(
                       key: const ValueKey('email'),
                       validator: (value) {
@@ -76,7 +100,9 @@ class _AuthFormState extends State<AuthForm> {
                         }
                         return null;
                       },
-                      decoration: const InputDecoration(labelText: 'Email'),
+                      decoration: const InputDecoration(
+                        labelText: 'Email',
+                      ),
                       keyboardType: TextInputType.emailAddress,
                       onSaved: (value) {
                         _emailAddress = value!;
