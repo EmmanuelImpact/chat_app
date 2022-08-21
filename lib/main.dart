@@ -39,10 +39,6 @@ class MyApp extends StatelessWidget {
       home: StreamBuilder(
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (ctx, userSnapshot) {
-          if (userSnapshot.connectionState == ConnectionState.waiting) {
-            return const LinearProgressIndicator();
-          }
-
           if (userSnapshot.hasData) {
             return const ChatsScreen();
           }
