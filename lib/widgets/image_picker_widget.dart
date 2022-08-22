@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 
 import 'package:image_picker/image_picker.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 // ignore: must_be_immutable
 class ImagePickerWidget extends StatefulWidget {
@@ -21,22 +22,24 @@ class _ImagePickerWidgetState extends State<ImagePickerWidget> {
   Future _pickImage() async {
     final ImagePicker pick = ImagePicker();
 
-    /* await Permission.camera.request();
-    var permissionStatus = await Permission.camera.status; */
+    await Permission.camera.request();
+    var permissionStatus = await Permission.camera.status;
 
-    final pickedImageFile = await pick.pickImage(
-      source: ImageSource.camera,
-      imageQuality: 50,
-      maxWidth: 150,
-    );
-    //final bytes = File(pickedImageFile!.path).readAsBytesSync();
+    if (permissionStatus.isGranted) {
+      final pickedImageFile = await pick.pickImage(
+        source: ImageSource.camera,
+        imageQuality: 50,
+        maxWidth: 150,
+      );
+      //final bytes = File(pickedImageFile!.path).readAsBytesSync();
 
-    setState(() {
-      // ignore: unnecessary_null_comparison
+      setState(() {
+        // ignore: unnecessary_null_comparison
 
-      pickedImage = File(pickedImageFile!.path);
-    });
-    widget.activeImage(pickedImage!);
+        pickedImage = File(pickedImageFile!.path);
+      });
+      widget.activeImage(pickedImage!);
+    }
   }
 
   @override

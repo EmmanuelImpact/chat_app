@@ -6,11 +6,13 @@ class MessageBubble extends StatelessWidget {
     this.message,
     this.isMe,
     this.username,
+    this.userImage,
   );
 
   final String message;
   final bool isMe;
   final String username;
+  final String userImage;
 
   @override
   Widget build(BuildContext context) {
